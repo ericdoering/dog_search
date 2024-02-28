@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
-import swanBold from "../styles/fonts/SwanseaBoldItalic-p3Dv.ttf";
-import swanRegular from "../styles/fonts/SwanseaItalic-AwqD.ttf";
+import relevance from "../styles/fonts/Relevance-trial-Regular.ttf";
+import relevanceBold from "../styles/fonts/Relevance-trial-Bold.ttf";
 
 export const theme = {
   background: "#E6E9ED",
-  primary: "#6342C3",
+  primary: "#4169E1",
   light: "#e2e2e2",
   text: "#0A2463",
   error: "#FB3640",
@@ -20,12 +20,12 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
 };
 @font-face {
-  font-family: 'Poppins Bold';
-  src: url(${swanBold})
+  font-family: 'Relevance';
+  src: url(${relevance})
 }
 @font-face {
-  font-family: 'Poppins Regular';
-  src: url(${swanRegular})
+  font-family: 'Relevance Bold';
+  src: url(${relevanceBold})
 }
   body {
     box-sizing: border-box;
