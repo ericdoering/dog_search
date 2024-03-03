@@ -25,6 +25,7 @@ function DogForm({
     const dogStore = useSelector((state: RootState) => state.app);
 
     const breedState = dogStore?.breed;
+    const subBreedState = dogStore?.subBreed;
 
 
 
@@ -32,9 +33,19 @@ function DogForm({
         dispatch({
             type: ActionType.BREED,
             payload: value
-
+        });
+        dispatch({
+            type: ActionType.SUB_BREED,
+            payload: "all"
         })
-    }
+    };
+
+    const renderSubBreed = (value: string) => {
+        dispatch({
+            type: ActionType.SUB_BREED,
+            payload: value
+        })
+    };
 
    
     
@@ -58,6 +69,25 @@ function DogForm({
                     </option>
                     ))
                 )}
+        </select>{" "}
+        </Dropdown>
+        <Dropdown 
+            title="Select a Sub Breed"
+            showError={false}
+            >
+        <select 
+            onChange={(e) => renderSubBreed(e.target.value)}
+            value={subBreedState}>
+                <option value="all">
+                    Select Sub Breed
+                </option>
+                {subBreedList?.length && 
+                    subBreedList?.map((subBreed: string, index: number) => (
+                    <option value={subBreed} key={index}>
+                        {subBreed}
+                    </option>
+                    ))
+                }
         </select>{" "}
         </Dropdown>
     </DogFormContainer>
