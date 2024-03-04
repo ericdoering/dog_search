@@ -2,13 +2,14 @@
 import { useDispatch } from "react-redux";
 import Dropdown from "./Dropdown";
 import { DogFormContainer } from "./styles";
-import { ActionType } from "../../types/reducer";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
+import { renderBreed, renderSubBreed, renderNumber } from "../../helpers";
+import { BreedsType } from "../../types/breed";
 
 type Props = {
-    breedList: any
-    subBreedList: any
+    breedList: BreedsType
+    subBreedList: string[]
     setImages: any
     setIsLoading: any
 }
@@ -26,27 +27,7 @@ function DogForm({
 
     const breedState = dogStore?.breed;
     const subBreedState = dogStore?.subBreed;
-
-
-
-    const renderBreed = (value: string) => {
-        dispatch({
-            type: ActionType.BREED,
-            payload: value
-        });
-        dispatch({
-            type: ActionType.SUB_BREED,
-            payload: "all"
-        })
-    };
-
-    const renderSubBreed = (value: string) => {
-        dispatch({
-            type: ActionType.SUB_BREED,
-            payload: value
-        })
-    };
-
+    const numberState = dogStore?.number
    
     
     return (
@@ -57,7 +38,7 @@ function DogForm({
             showError={false}
             >
         <select 
-            onChange={(e) => renderBreed(e.target.value)}
+            onChange={(e) => renderBreed(e.target.value, dispatch)}
             value={breedState}>
                 <option value="all">
                     Select All Breeds
@@ -76,7 +57,7 @@ function DogForm({
             showError={false}
             >
         <select 
-            onChange={(e) => renderSubBreed(e.target.value)}
+            onChange={(e) => renderSubBreed(e.target.value, dispatch)}
             value={subBreedState}>
                 <option value="all">
                     Select Sub Breed
@@ -88,6 +69,23 @@ function DogForm({
                     </option>
                     ))
                 }
+        </select>{" "}
+        </Dropdown>
+        <Dropdown 
+            title="Number of Images"
+            showError={false}
+            >
+        <select 
+            onChange={(e) => renderNumber(e.target.value, dispatch)}
+            value={numberState}>
+                <option value="all">
+                    Select the Number of Images
+                </option>
+                {Array.from({length: 50}, (_, index) => (
+                    <option value={index + 1} key={index}>
+                        {index + 1}
+                    </option>
+                ))};    
         </select>{" "}
         </Dropdown>
     </DogFormContainer>
