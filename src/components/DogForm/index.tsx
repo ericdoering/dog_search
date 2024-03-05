@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
 import { renderBreed, renderSubBreed, renderNumber } from "../../helpers";
 import { BreedsType } from "../../types/breed";
+import Button from "../Button";
 
 type Props = {
     breedList: BreedsType
@@ -88,6 +89,7 @@ function DogForm({
                 ))};    
         </select>{" "}
         </Dropdown>
+        <Button setImages={setImages} setIsLoading={setIsLoading} /> 
     </DogFormContainer>
     )
 };
