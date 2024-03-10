@@ -11,8 +11,8 @@ import Button from "../Button";
 type Props = {
     breedList: BreedsType
     subBreedList: string[]
-    setImages: any
-    setIsLoading: any
+    setImages: React.Dispatch<React.SetStateAction<never[]>>
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function DogForm({
